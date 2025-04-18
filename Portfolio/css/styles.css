@@ -1,23 +1,20 @@
-/* Base Styles */
+/* General Styles */
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #e0e6f0;
-    background-color: #0e1525; /* deep dark blue */
+    background-color: #0e1525;
   }
   
-  /* General Links */
   a {
     color: #a08cff;
     text-decoration: none;
   }
-  
   a:hover {
     color: #d4bfff;
   }
   
-  /* Section Titles */
   h1, h2, h3 {
     margin-bottom: 0.5rem;
     color: #ffffff;
@@ -29,7 +26,7 @@ body {
     margin: auto;
   }
   
-  /* Container Utility */
+  /* Container */
   .container {
     max-width: 1100px;
     margin: 0 auto;
@@ -45,41 +42,34 @@ body {
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
   }
-  
   .logo {
     font-size: 1.5rem;
     color: #fff;
     font-weight: bold;
   }
-  
   .nav-links {
     list-style: none;
     display: flex;
     gap: 25px;
   }
-  
   .nav-links a {
     color: #e0e6f0;
     font-weight: 600;
-    transition: color 0.3s;
   }
-  
   .nav-links a:hover {
     color: #c5aaff;
   }
   
-  /* Starfield Background (Optional) */
+  /* Starfield Background */
   .starfield {
     background: #0e1525 url('https://www.transparenttextures.com/patterns/stardust.png');
     background-repeat: repeat;
     background-size: contain;
     animation: twinkle 5s infinite;
   }
-  
   @keyframes twinkle {
-    0% { opacity: 0.9; }
+    0%, 100% { opacity: 0.9; }
     50% { opacity: 1; }
-    100% { opacity: 0.9; }
   }
   
   /* Hero Section */
@@ -90,39 +80,71 @@ body {
     padding: 100px 20px;
   }
   
-  /* About Section */
-  .about {
-    background-color: #151e34;
-  }
-  
-  /* Projects Section */
-  .projects {
-    background-color: #1a243c;
-  }
-  
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  .project-card {
-    background: #2b3452;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  }
-  
-  /* Contact Section */
-  .contact {
-    background-color: #151e34;
-    text-align: center;
-  }
-  
   /* Footer */
   .footer {
     background: #0d1222;
     color: #aab4d4;
     text-align: center;
     padding: 20px;
+  }
+  
+  /* Slider */
+  .slider {
+    position: relative;
+    max-width: 100%;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slider img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.4s ease;
+  }
+  
+  .slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(160, 140, 255, 0.1);
+    border: none;
+    color: #d4bfff;
+    font-size: 2rem;
+    padding: 0 15px;
+    cursor: pointer;
+    z-index: 1;
+    transition: background-color 0.3s;
+  }
+  .slide-btn:hover {
+    background-color: rgba(160, 140, 255, 0.3);
+  }
+  .slide-btn.left {
+    left: 10px;
+  }
+  .slide-btn.right {
+    right: 10px;
+  }
+  
+  /* Dots */
+  .dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+  .dots .dot {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #444b70;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .dots .dot.active {
+    background-color: #a08cff;
   }
