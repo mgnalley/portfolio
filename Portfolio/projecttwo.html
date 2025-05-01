@@ -3,46 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project 1 – My Portfolio</title>
-  <link rel="stylesheet" href="css/styles.css"/>
+  <title>Project 1 - My Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="starfield">
-  <!-- Header -->
+  <!-- Header (same as the home page) -->
   <header class="header">
     <div class="container">
       <h1 class="logo">My Portfolio</h1>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">← Back to Home</a></li>
+          <li><a href="index.html">Home</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h2>Project 1 Title</h2>
-    <p>A more detailed description of what this project is, how it was built, and why it matters.</p>
-  </section>
+  <!-- Project Details Section -->
+  <section class="project-details">
+    <h2>Project 1: Website Redesign</h2>
+    <p>In this project, I was tasked with redesigning a client's website to improve user experience, increase engagement, and update the design to be mobile-friendly.</p>
 
-  <!-- Details -->
-  <section class="about">
-    <h3>Tech Stack</h3>
-    <p>HTML, CSS, JavaScript</p>
+    <!-- Image Slider (Carousel) -->
+    <div class="slider-container">
+      <div class="slider-images">
+        <img src="images/project1-1.png" alt="Project Image 1" class="slider-image">
+        <img src="images/project1-2.png" alt="Project Image 2" class="slider-image">
+        <img src="images/project1-3.png" alt="Project Image 3" class="slider-image">
+      </div>
 
-    <h3>Live Demo / GitHub</h3>
-    <p>
-      <a href="https://your-project-demo.com" target="_blank">View Live</a> |
-      <a href="https://github.com/yourusername/project1" target="_blank">Source Code</a>
-    </p>
-
-    <h3>Screenshots</h3>
-    <div class="slider">
-      <button class="slide-btn left" onclick="changeSlide(-1)">&#8592;</button>
-      <img id="slide-image" src="images/project1-1.png" alt="Project Screenshot" />
-      <button class="slide-btn right" onclick="changeSlide(1)">&#8594;</button>
+      <!-- Arrow buttons -->
+      <button class="slider-arrow prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="slider-arrow next" onclick="moveSlide(1)">&#10095;</button>
+      
+      <!-- Dot indicators -->
+      <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
     </div>
-    <div class="dots" id="slider-dots"></div>
   </section>
 
   <!-- Footer -->
@@ -50,46 +50,37 @@
     <p>&copy; 2025 Your Name. All rights reserved.</p>
   </footer>
 
-  <!-- Slider Script -->
+  <!-- Scripts for Slider -->
   <script>
-    const images = [
-      'images/project1-1.png',
-      'images/project1-2.png',
-      'images/project1-3.png'
-    ];
-    let currentIndex = 0;
-    const imgElement = document.getElementById('slide-image');
-    const dotsContainer = document.getElementById('slider-dots');
+    let slideIndex = 1;
 
-    function showSlide(index) {
-      currentIndex = (index + images.length) % images.length;
-      imgElement.src = images[currentIndex];
-      updateDots();
+    function showSlides(n) {
+      const slides = document.querySelectorAll(".slider-image");
+      const dots = document.querySelectorAll(".dot");
+
+      if (n > slides.length) slideIndex = 1;
+      if (n < 1) slideIndex = slides.length;
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].classList.add("active");
     }
 
-    function changeSlide(direction) {
-      showSlide(currentIndex + direction);
+    function moveSlide(n) {
+      showSlides(slideIndex += n);
     }
 
-    function updateDots() {
-      const dots = dotsContainer.querySelectorAll('.dot');
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-      });
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
     }
 
-    function renderDots() {
-      dotsContainer.innerHTML = '';
-      images.forEach((_, i) => {
-        const dot = document.createElement('span');
-        dot.classList.add('dot');
-        if (i === currentIndex) dot.classList.add('active');
-        dot.addEventListener('click', () => showSlide(i));
-        dotsContainer.appendChild(dot);
-      });
-    }
-
-    renderDots();
+    showSlides(slideIndex); // Initial call to display first image
   </script>
 </body>
 </html>

@@ -3,39 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project 3 – My Portfolio</title>
+  <title>Project 1 - My Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="starfield">
+  <!-- Header (same as the home page) -->
   <header class="header">
     <div class="container">
       <h1 class="logo">My Portfolio</h1>
       <nav>
         <ul class="nav-links">
-          <li><a href="index.html">← Back to Home</a></li>
+          <li><a href="index.html">Home</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <h2>Project 1 Title</h2>
-    <p>A more detailed description of what this project is, how it was built, and why it matters.</p>
+  <!-- Project Details Section -->
+  <section class="project-details">
+    <h2>Project 1: Website Redesign</h2>
+    <p>In this project, I was tasked with redesigning a client's website to improve user experience, increase engagement, and update the design to be mobile-friendly.</p>
+
+    <!-- Image Slider (Carousel) -->
+    <div class="slider-container">
+      <div class="slider-images">
+        <img src="images/project1-1.png" alt="Project Image 1" class="slider-image">
+        <img src="images/project1-2.png" alt="Project Image 2" class="slider-image">
+        <img src="images/project1-3.png" alt="Project Image 3" class="slider-image">
+      </div>
+
+      <!-- Arrow buttons -->
+      <button class="slider-arrow prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="slider-arrow next" onclick="moveSlide(1)">&#10095;</button>
+      
+      <!-- Dot indicators -->
+      <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
   </section>
 
-  <section class="about">
-    <h3>Tech Stack</h3>
-    <p>HTML, CSS, JavaScript, and [any frameworks used]</p>
-
-    <h3>Live Demo / GitHub</h3>
-    <p><a href="https://your-project-demo.com" target="_blank">View Live</a> | <a href="https://github.com/yourusername/project1" target="_blank">Source Code</a></p>
-
-    <h3>Screenshots</h3>
-    <img src="your-screenshot.png" alt="Screenshot of Project 1" style="max-width: 100%; border-radius: 12px;" />
-  </section>
-
+  <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 Your Name. All rights reserved.</p>
   </footer>
+
+  <!-- Scripts for Slider -->
+  <script>
+    let slideIndex = 1;
+
+    function showSlides(n) {
+      const slides = document.querySelectorAll(".slider-image");
+      const dots = document.querySelectorAll(".dot");
+
+      if (n > slides.length) slideIndex = 1;
+      if (n < 1) slideIndex = slides.length;
+
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].classList.add("active");
+    }
+
+    function moveSlide(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    showSlides(slideIndex); // Initial call to display first image
+  </script>
 </body>
 </html>
